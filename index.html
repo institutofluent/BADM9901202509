@@ -23,6 +23,13 @@
       touch-action: none;
       -ms-touch-action: none;
       overscroll-behavior: none;
+      padding-bottom: 360px; /* faixa 340px + 20px de margem para o aviso */
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding-bottom: 160px; /* faixa 140px + 20px */
+      }
     }
 
     @media (min-width: 1025px) {
@@ -33,10 +40,9 @@
       }
     }
 
-    /* faixa roxa no topo */
     .faixa-topo {
       width: 100%;
-      height: 170px; /* altura original mantida */
+      height: 170px;
       background-color: #7551B4;
       display: flex;
       align-items: center;
@@ -44,19 +50,18 @@
     }
 
     .faixa-topo img {
-      max-height: 170%; /* mantém o tamanho proporcional dentro da faixa */
+      max-height: 170%;
       height: auto;
     }
 
     @media (max-width: 600px) {
       .faixa-topo {
-        height: 70px; /* altura menor no mobile */
+        height: 70px;
       }
     }
 
-    /* texto abaixo da faixa */
     .texto-abaixo-topo {
-      margin-top: 20px; /* espaçamento abaixo da faixa */
+      margin-top: 20px;
       text-align: center;
       color: #666;
       font-weight: 300;
@@ -70,14 +75,13 @@
       }
     }
 
-    /* bloco dos rótulos */
     .rotulos {
-      margin-top: 30px; /* distância do texto acima */
-      margin-left: 20px; /* pequena margem à esquerda */
+      margin-top: 30px;
+      margin-left: 20px;
       color: #333;
       font-size: 18px;
       line-height: 1.8;
-      font-weight: bold; /* NEGRITO aplicado apenas nos rótulos */
+      font-weight: bold;
     }
 
     @media (max-width: 600px) {
@@ -88,13 +92,10 @@
       }
     }
 
-    /* aviso acima da faixa inferior */
+    /* aviso agora está no fluxo normal */
     .aviso {
-      position: fixed;
-      bottom: 360px; /* faixa tem 340px, +20px de espaço */
-      left: 0;
-      width: 100%;
       text-align: center;
+      margin: 20px;
       color: #000;
       font-size: 14px;
       font-weight: 300;
@@ -102,15 +103,14 @@
 
     @media (max-width: 600px) {
       .aviso {
-        bottom: 160px; /* faixa no mobile tem 140px, +20px */
         font-size: 12px;
+        margin: 12px;
       }
     }
 
-    /* faixa inferior */
     .faixa-baixo {
       width: 100%;
-      height: 340px; /* altura original mantida */
+      height: 340px;
       background-color: #7551B4;
       position: fixed;
       bottom: 0;
@@ -119,11 +119,10 @@
 
     @media (max-width: 600px) {
       .faixa-baixo {
-        height: 140px; /* altura menor no mobile */
+        height: 140px;
       }
     }
 
-    /* botão WhatsApp */
     .whatsapp-btn {
       position: fixed;
       bottom: 20px;
@@ -173,15 +172,12 @@
   </style>
 </head>
 <body>
-  <!-- faixa roxa com logo centralizado -->
   <div class="faixa-topo">
     <img src="ftec.png" alt="Logo FTEC">
   </div>
 
-  <!-- texto abaixo da faixa -->
   <div class="texto-abaixo-topo">Código MEC Nº 21811</div>
 
-  <!-- rótulos alinhados à esquerda -->
   <div class="rotulos">
     CÓDIGO: <span id="cod"></span><br>
     DATA DA EMISSÃO: <span id="data"></span><br>
@@ -195,21 +191,18 @@
     CURSO: <span id="curso"></span>
   </div>
 
-  <!-- aviso acima da faixa inferior -->
+  <!-- aviso dentro do fluxo -->
   <div class="aviso">
     Caso acredite que as informações emitidas não coincidem, entre em contato conosco pelo Whatsapp
   </div>
 
-  <!-- faixa roxa inferior -->
   <div class="faixa-baixo"></div>
 
-  <!-- botão WhatsApp -->
   <a href="https://wa.me/5585985256372" target="_blank" class="whatsapp-btn">
     <span>Fale Conosco:</span>
     <img src="whatsapp.png" alt="WhatsApp">
   </a>
 
-  <!-- script que vai preencher os dados -->
   <script src="preenche.js"></script>
 </body>
 </html>
