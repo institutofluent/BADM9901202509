@@ -1,28 +1,59 @@
-fetch('dados.html')
-  .then(response => response.text())
-  .then(html => {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-    const jsonText = doc.querySelector('#dados').textContent.trim();
+// preenche.js
+document.addEventListener('DOMContentLoaded', function () {
+  fetch('dados.html')
+    .then(resp => resp.text())
+    .then(text => {
+      let dados = null;
 
-    const dados = JSON.parse(jsonText);
+      // tenta JSON direto
+      try {
+        dados = JSON.parse(text.trim());
+      } catch (err) {
+        // tenta extrair JSON de um HTML que contenha <div id="dados">{...}</div>
+        try {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(text, 'text/html');
+          const dadosDiv = doc.querySelector('#dados');
+          if (dadosDiv) {
+            dados = JSON.parse(dadosDiv.textContent.trim());
+          } else {
+            // fallback: pega primeiro bloco JSON no texto
+            const m = text.match(/\{[\s\S]*\}/);
+            if (m) dados = JSON.parse(m[0]);
+          }
+        } catch (err2) {
+          console.error('preenche.js - parse failed:', err2);
+        }
+      }
 
-    function preencher(id, valor) {
-      const el = document.getElementById(id);
-      el.textContent = valor;
-      el.style.color = "#666"; // cinza aplicado no valor
-      el.style.fontWeight = "normal"; // garante que só o rótulo fica negrito
-    }
+      if (!dados) {
+        console.error('preenche.js: não foi possível obter dados válidos.');
+        return;
+      }
 
-    preencher('cod', dados.cod);
-    preencher('data', dados.data);
-    preencher('aluno', dados.aluno);
-    preencher('cpf', dados.cpf);
-    preencher('rg', dados.rg);
-    preencher('nacionalidade', dados.nacionalidade);
-    preencher('natural', dados.natural);
-    preencher('nascimento', dados.nascimento);
-    preencher('filiacao', dados.filiacao);
-    preencher('curso', dados.curso);
-  })
-  .catch(err => console.error('Erro ao carregar dados:', err));
+      const map = {
+        cod: 'cod',
+        data: 'data',
+        aluno: 'aluno',
+        cpf: 'cpf',
+        rg: 'rg',
+        nacionalidade: 'nacionalidade',
+        natural: 'natural',
+        nascimento: 'nascimento',
+        filiacao: 'filiacao',
+        curso: 'curso'
+      };
+
+      Object.keys(map).forEach(function(id) {
+        const el = document.getElementById(id);
+        const val = dados[ map[id] ];
+        if (el) {
+          el.textContent = val !== undefined && val !== null ? val : '';
+          // força cor cinza + negrito (usa !important inline)
+          el.style.setProperty('color', '#666', 'important');
+          el.style.setProperty('font-weight', '700', 'important');
+        }
+      });
+    })
+    .catch(err => console.error('preenche.js - fetch error:', err));
+});
