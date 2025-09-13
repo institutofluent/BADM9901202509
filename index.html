@@ -45,13 +45,13 @@
       background-color: #7551B4;
       z-index: 1000;
 
-      display: flex;              /* centralização */
-      align-items: center;        /* centraliza verticalmente */
-      justify-content: center;    /* centraliza horizontalmente */
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .faixa-topo img {
-      max-height: 170%;   /* garante que a imagem nunca ultrapasse a faixa */
+      max-height: 170%;
       height: auto;
     }
 
@@ -60,7 +60,28 @@
         height: 70px;
       }
       .faixa-topo img {
-        max-height: 160%; /* imagem proporcionalmente menor em telas pequenas */
+        max-height: 160%;
+      }
+    }
+
+    /* faixa roxa embaixo (rodapé) */
+    .faixa-baixo {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 340px; /* 2x maior que a faixa-topo */
+      background-color: #7551B4;
+      z-index: 1000;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (max-width: 600px) {
+      .faixa-baixo {
+        height: 140px; /* 2x da faixa superior no mobile */
       }
     }
 
@@ -76,7 +97,7 @@
       border-radius: 50px;
       padding: 15px 20px;
       text-decoration: none;
-      z-index: 2000;
+      z-index: 2001; /* acima da faixa-baixo */
       transition: background 0.3s ease;
       font-family: Arial, sans-serif;
     }
@@ -119,6 +140,9 @@
   <div class="faixa-topo">
     <img src="ftec.png" alt="Logo FTEC">
   </div>
+
+  <!-- faixa roxa inferior -->
+  <div class="faixa-baixo"></div>
 
   <!-- botão WhatsApp -->
   <a href="https://wa.me/5585985256372" target="_blank" class="whatsapp-btn">
