@@ -9,8 +9,8 @@
       padding: 0;
       width: 100%;
       height: 100%;
-      overflow: hidden; /* sem rolagem */
-      background-color: #f2f2f2; /* fundo correto */
+      overflow: hidden;              /* sem rolagem */
+      background-color: #f2f2f2;     /* fundo correto */
       font-family: Arial, sans-serif;
     }
 
@@ -22,18 +22,26 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .topo img {
+      max-height: 100%; /* nunca extrapola os 140px do topo */
+      height: auto;
+      width: auto;
+      display: block;
     }
 
     .rodape {
-      background-color: #000000;
-      width: 100%;
-      height: calc(100% - 140px); /* ocupa todo o resto da tela */
-      position: absolute;
-      bottom: 0;
+      position: fixed;    /* garante cobertura da viewport */
+      top: 140px;         /* começa depois do topo */
+      bottom: 0;          /* vai até o fim da tela */
       left: 0;
+      right: 0;
+      background-color: #000;       /* fallback caso não tenha imagem */
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
+      z-index: 1;
     }
 
     .whatsapp-btn {
@@ -53,29 +61,14 @@
       z-index: 9999;
     }
 
-    .whatsapp-btn span {
-      color: white;
-      margin-left: 20px;
-      font-size: 32px;
-      font-weight: bold;
-      white-space: nowrap;
-    }
-
-    .whatsapp-btn img {
-      width: 90px;
-      height: 90px;
-      margin-left: 15px;
-    }
-
-    .whatsapp-btn:hover {
-      background: rgba(0,0,0,0.8);
-    }
+    .whatsapp-btn span { color: white; margin-left:20px; font-size:32px; font-weight:bold; white-space:nowrap; }
+    .whatsapp-btn img { width:90px; height:90px; margin-left:15px; }
   </style>
 </head>
 <body>
 
   <div class="topo">
-    <img src="ftec.png" style="height:300px;" alt="logo">
+    <img src="ftec.png" alt="logo">
   </div>
 
   <a href="https://wa.me/5585985256372" target="_blank" class="whatsapp-btn">
@@ -83,6 +76,7 @@
     <img src="whatsapp.png" alt="WhatsApp">
   </a>
 
+  <!-- se não tiver imagem, fica preto; se tiver, substitua o url -->
   <div class="rodape" style="background-image: url('rodape.png');"></div>
 
 </body>
