@@ -36,7 +36,7 @@
     /* faixa roxa no topo */
     .faixa-topo {
       width: 100%;
-      height: 170px;
+      height: 170px; /* altura original mantida */
       background-color: #7551B4;
       display: flex;
       align-items: center;
@@ -44,19 +44,19 @@
     }
 
     .faixa-topo img {
-      max-height: 100%;
+      max-height: 170%; /* mantém o tamanho proporcional dentro da faixa */
       height: auto;
     }
 
     @media (max-width: 600px) {
       .faixa-topo {
-        height: 70px;
+        height: 70px; /* altura menor no mobile */
       }
     }
 
     /* texto abaixo da faixa */
     .texto-abaixo-topo {
-      margin-top: 20px;
+      margin-top: 20px; /* espaçamento abaixo da faixa */
       text-align: center;
       color: #666;
       font-weight: 300;
@@ -70,29 +70,27 @@
       }
     }
 
-    /* bloco de rótulos */
+    /* bloco dos rótulos */
     .rotulos {
-      margin-top: 30px;       /* espaço depois do primeiro texto */
-      margin-left: 20px;      /* espaço da borda esquerda */
+      margin-top: 30px; /* distância do texto acima */
+      margin-left: 20px; /* pequena margem à esquerda */
       color: #333;
       font-size: 18px;
       line-height: 1.8;
-      text-align: left;
     }
 
     @media (max-width: 600px) {
       .rotulos {
-        margin-top: 20px;
-        margin-left: 12px;
         font-size: 14px;
-        line-height: 1.6;
+        margin-left: 12px;
+        margin-top: 20px;
       }
     }
 
     /* faixa inferior */
     .faixa-baixo {
       width: 100%;
-      height: 340px;
+      height: 340px; /* altura original mantida */
       background-color: #7551B4;
       position: fixed;
       bottom: 0;
@@ -101,7 +99,7 @@
 
     @media (max-width: 600px) {
       .faixa-baixo {
-        height: 140px;
+        height: 140px; /* altura menor no mobile */
       }
     }
 
@@ -163,7 +161,7 @@
   <!-- texto abaixo da faixa -->
   <div class="texto-abaixo-topo">Código MEC Nº 21811</div>
 
-  <!-- rótulos abaixo -->
+  <!-- rótulos alinhados à esquerda -->
   <div class="rotulos">
     CÓDIGO:<br>
     DATA DA EMISSÃO:<br>
