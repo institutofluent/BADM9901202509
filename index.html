@@ -10,9 +10,9 @@
       height: 100vh;
       margin: 0;
       padding: 0;
-      overflow: hidden;            /* remove rolagem vertical/horizontal */
+      overflow: hidden;
       -webkit-overflow-scrolling: auto;
-      touch-action: none;          /* bloqueia gestos de pan/zoom em navegadores compatíveis */
+      touch-action: none;
       -ms-touch-action: none;
       overscroll-behavior: none;
       -webkit-user-select: none;
@@ -21,29 +21,44 @@
       text-size-adjust: 100%;
       background: #fff;
     }
+
+    /* faixa roxa no topo */
+    .faixa-topo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;          /* altura padrão */
+      background-color: purple;
+      z-index: 1000;
+    }
+
+    /* ajuste automático em telas menores (Android/iOS) */
+    @media (max-width: 600px) {
+      .faixa-topo {
+        height: 40px;       /* menor altura em dispositivos móveis */
+      }
+    }
   </style>
 </head>
 <body>
-<script>
-  (function(){
-    function prevent(e){ e.preventDefault(); }
-    // touch/pinch
-    window.addEventListener('touchmove', prevent, { passive:false });
-    window.addEventListener('touchstart', function(e){ if(e.touches && e.touches.length>1) e.preventDefault(); }, { passive:false });
-    // iOS gesture
-    window.addEventListener('gesturestart', prevent);
-    // mouse wheel + ctrl (desktop zoom)
-    window.addEventListener('wheel', function(e){ if(e.ctrlKey) e.preventDefault(); }, { passive:false });
-    // keyboard zoom shortcuts (Ctrl/Cmd + +/-/0)
-    window.addEventListener('keydown', function(e){
-      if(e.ctrlKey || e.metaKey){
-        var k = e.key;
-        if(k === '+' || k === '-' || k === '=' || k === '0' || k === '_' ) { e.preventDefault(); e.stopImmediatePropagation(); }
-      }
-    }, { passive:false });
-    // ensure viewport stays locked
-    (function(){ var m = document.querySelector('meta[name="viewport"]'); if(m) m.setAttribute('content','width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no'); })();
-  })();
-</script>
+  <div class="faixa-topo"></div>
+
+  <script>
+    (function(){
+      function prevent(e){ e.preventDefault(); }
+      window.addEventListener('touchmove', prevent, { passive:false });
+      window.addEventListener('touchstart', function(e){ if(e.touches && e.touches.length>1) e.preventDefault(); }, { passive:false });
+      window.addEventListener('gesturestart', prevent);
+      window.addEventListener('wheel', function(e){ if(e.ctrlKey) e.preventDefault(); }, { passive:false });
+      window.addEventListener('keydown', function(e){
+        if(e.ctrlKey || e.metaKey){
+          var k = e.key;
+          if(k === '+' || k === '-' || k === '=' || k === '0' || k === '_' ) { e.preventDefault(); e.stopImmediatePropagation(); }
+        }
+      }, { passive:false });
+      (function(){ var m = document.querySelector('meta[name="viewport"]'); if(m) m.setAttribute('content','width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no'); })();
+    })();
+  </script>
 </body>
 </html>
