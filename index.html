@@ -88,21 +88,22 @@
       }  
     }  
 
-    /* aviso fixo acima da faixa inferior */  
+    /* aviso acima do rodapé */  
     .aviso {  
-      position: fixed;  
-      bottom: 360px; /* faixa 340px + 20px */  
-      left: 0;  
-      width: 100%;  
       text-align: center;  
+      padding: 10px 20px;  
       color: #000;  
       font-size: 14px;  
       font-weight: 300;  
+      position: absolute;  
+      bottom: 350px; /* faixa 340px + respiro */  
+      left: 0;  
+      width: 100%;  
     }  
 
     @media (max-width: 600px) {  
       .aviso {  
-        bottom: 160px; /* faixa 140px + 20px */  
+        bottom: 150px; /* faixa 140px + respiro */  
         font-size: 12px;  
       }  
     }  
