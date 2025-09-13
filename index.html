@@ -1,83 +1,78 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Verificação</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;              /* sem rolagem */
-      background-color: #f2f2f2;     /* fundo correto */
-      font-family: Arial, sans-serif;
-    }
+cara, compara esse código:
 
-    .topo {
-      background-color: #7551B4;
-      width: 100%;
-      height: 140px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      overflow: hidden;
-    }
-    .topo img {
-      max-height: 100%; /* nunca extrapola os 140px do topo */
-      height: auto;
-      width: auto;
-      display: block;
-    }
+<!DOCTYPE html>  <html lang="pt-br">  
+<head>  
+  <meta charset="UTF-8">  
+  <title>Verificação</title>  
+  <style>  
+    html, body {  
+      margin: 0;  
+      padding: 0;  
+      width: 100%;  
+      height: 100%;  
+      overflow: hidden; /* bloqueia rolagem vertical e horizontal */  
+      background-color: #f2f2f2;  
+      font-family: Arial, sans-serif;  
+    }  .topo {  
+  background-color: #7551B4;  
+  width: 100%;  
+  height: 140px;  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);  
+}  
 
-    .rodape {
-      position: fixed;    /* garante cobertura da viewport */
-      top: 140px;         /* começa depois do topo */
-      bottom: 0;          /* vai até o fim da tela */
-      left: 0;
-      right: 0;
-      background-color: #000;       /* fallback caso não tenha imagem */
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      z-index: 1;
-    }
+.rodape {  
+  background-color: #000000;  
+  width: 100%;  
+  height: 280px; /* 140px * 2 */  
+  position: absolute;  
+  bottom: 0;  
+  left: 0;  
+}  
 
-    .whatsapp-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 25px 35px;
-      background: rgba(0,0,0,0.6);
-      border-radius: 50px;
-      cursor: pointer;
-      width: 350px;
-      height: 90px;
-      text-decoration: none;
-      z-index: 9999;
-    }
+.whatsapp-btn {  
+  position: fixed;  
+  bottom: 20px;  
+  right: 20px;  
+  display: flex;  
+  align-items: center;  
+  justify-content: space-between;  
+  padding: 25px 35px;  
+  background: rgba(0,0,0,0.6);  
+  border-radius: 50px;  
+  cursor: pointer;  
+  width: 350px;  
+  height: 90px;  
+  text-decoration: none;  
+  z-index: 9999;  
+}  
 
-    .whatsapp-btn span { color: white; margin-left:20px; font-size:32px; font-weight:bold; white-space:nowrap; }
-    .whatsapp-btn img { width:90px; height:90px; margin-left:15px; }
-  </style>
-</head>
-<body>
+.whatsapp-btn span {  
+  color: white;  
+  margin-left: 20px;  
+  font-size: 32px;  
+  font-weight: bold;  
+  white-space: nowrap;  
+}  
 
-  <div class="topo">
-    <img src="ftec.png" alt="logo">
-  </div>
+.whatsapp-btn img {  
+  width: 90px;  
+  height: 90px;  
+  margin-left: 15px;  
+}  
 
-  <a href="https://wa.me/5585985256372" target="_blank" class="whatsapp-btn">
-    <span>Fale Conosco</span>
-    <img src="whatsapp.png" alt="WhatsApp">
-  </a>
+.whatsapp-btn:hover {  
+  background: rgba(0,0,0,0.8);  
+}
 
-  <!-- se não tiver imagem, fica preto; se tiver, substitua o url -->
-  <div class="rodape" style="background-image: url('rodape.png');"></div>
-
-</body>
-</html>
+  </style>  
+</head>  
+<body>    <div class="topo">  
+    <img src="ftec.png" style="height:300px;" alt="logo">  
+  </div>    <a href="https://wa.me/5585985256372" target="_blank" class="whatsapp-btn">  
+    <span>Fale Conosco</span>  
+    <img src="whatsapp.png" alt="WhatsApp">  
+  </a>    <div class="rodape"></div>  </body>  
+</html> 
