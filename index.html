@@ -1,204 +1,101 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!doctype html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Verificação</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <title>Página sem rolagem e sem zoom</title>
   <style>
+    /* Garante que não haja rolagem e que a página ocupe toda a tela */
     html, body {
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       margin: 0;
       padding: 0;
-      overflow-x: hidden;
-      background-color: #f2f2f2;
+      overflow: hidden;            /* remove rolagem vertical/horizontal */
+      -webkit-overflow-scrolling: auto;
+      touch-action: none;          /* bloqueia gestos de pan/zoom em navegadores compatíveis */
+      -ms-touch-action: none;
+      overscroll-behavior: none;
+      -webkit-user-select: none;
+      user-select: none;
+      background: #f2f2f2;
       font-family: Arial, sans-serif;
     }
 
-    .topo {
-      background-color: white;
+    /* Conteúdo central apenas como exemplo */
+    .container {
+      box-sizing: border-box;
       width: 100%;
-      height: 140px;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    .topo2 {
-      background-color: #ff6600;
-      width: 100%;
-      height: calc(140px / 3);
-    }
-
-    .layout {
-      background-color: #0057db;
-      width: 80%;
-      margin: 60px auto;
-      height: 200px;
-      border-radius: 20px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .layout span {
-      font-family: 'Trebuchet MS', sans-serif;
-      font-size: 42px;
-      font-weight: bold;
-      color: white;
-    }
-
-    .conteudo {
-      width: 100%;
-      margin: 60px auto 0 auto;
-      padding: 0;
-    }
-
-    .conteudo .imagem {
-      float: right;
-      width: 40%;
-      min-width: 250px;
+    .card {
+      width: 90%;
+      max-width: 900px;
+      padding: 24px;
+      background: white;
       border-radius: 10px;
-      margin: 0 30px 15px 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      text-align: center;
     }
 
-    .conteudo .texto {
-      font-size: 20px;
-      color: #333;
-      line-height: 1.6;
-      font-style: italic;
-      font-weight: 300;
-      margin: 0 35px;
-    }
-
-    .conteudo .dados {
-      font-size: 17px;
-      font-weight: bold;
-      font-style: normal;
-      color: #666;
-      margin: 55px 35px 0 35px;
-      line-height: 1.3;
-      white-space: pre-line;
-    }
-
-    .conteudo .dados span {
-      color: black;
-      font-weight: bold;
-    }
-
-    .linha-final {
-      background-color: darkcyan;
-      width: 100%;
-      height: 18px;
-      margin: 40px 0 0 0;
-      border-radius: 0;
-    }
-
-    .imagem-final-container {
-      position: relative;
-      width: 100%;
-    }
-
-    .imagem-final {
-      display: block;
-      width: 100%;
-      min-height: 100vh;
-      object-fit: cover;
-      margin-top: 60px;
-      margin-bottom: 0;
-    }
-
-    .overlay {
-      position: absolute;
-      top: 20px;          /* distância do topo da imagem-final */
-      left: 50%;
-      transform: translateX(-50%);
-      max-width: 40%;     /* tamanho da imagem sobreposta */
-      height: auto;
-    }
-
-    .whatsapp-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 40px 50px;
-      background: rgba(0,0,0,0.6);
-      border-radius: 70px;
-      cursor: pointer;
-      width: 450px;
-      height: 120px;
-      text-decoration: none;
-      z-index: 9999;
-    }
-
-    .whatsapp-btn span {
-      color: white;
-      font-size: 50px;
-      font-weight: bold;
-      white-space: nowrap;
-    }
-
-    .whatsapp-btn img {
-      width: 140px;
-      height: 140px;
-      margin-left: 25px;
-    }
-
-    .whatsapp-btn:hover {
-      background: rgba(0,0,0,0.8);
-    }
+    /* Evita redimensionamento de texto automático no iOS */
+    html { -webkit-text-size-adjust: 100%; }
   </style>
 </head>
 <body>
-
-  <div class="topo">
-    <img src="unicorp.png" style="height:170px;" alt="logo">
-  </div>
-  <div class="topo2"></div>
-  <div class="layout">
-    <span>Documento emitido pela Instituição</span>
-  </div>
-
-  <div class="conteudo">
-    <img src="imagem.png" alt="Imagem Institucional" class="imagem">
-    <div class="texto">
-      <p>
-        O código informado se refere a um documento devidamente emitido pela nossa instituição, porém a conferência dos dados apresentados é de inteira responsabilidade do usuário que está efetuando a validação do documento, verifique se os dados abaixos são o mesmo do documento impresso/original:
-      </p>
-    </div>
-
-    <div class="dados" id="dados"></div>
-
-    <div class="linha-final"></div>
-
-    <div class="imagem-final-container">
-      <img src="overlay.png" alt="Imagem Superior" class="overlay">
-      <img src="imagem-final.png" alt="Imagem Final" class="imagem-final" id="imagemFinal">
+  <div class="container">
+    <div class="card">
+      <h1>Sem rolagem · Sem zoom</h1>
+      <p>Esta página bloqueia rolagem e zoom em navegadores modernos (mobile e desktop).</p>
     </div>
   </div>
-
-  <a href="https://wa.me/5585985256372" target="_blank" class="whatsapp-btn">
-    <span>Fale Conosco</span>
-    <img src="whatsapp.png" alt="WhatsApp">
-  </a>
 
   <script>
-    window.addEventListener('load', () => {
-      fetch('preencher.html').then(r => r.text()).then(texto => {
-        const linhas = texto.trim().split('\n');
-        const divDados = document.getElementById('dados');
-        divDados.innerHTML =
-          "CÓDIGO: <span>" + (linhas[0] || "") + "</span><br>" +
-          "DATA DE EMISSÃO: <span>" + (linhas[1] || "") + "</span><br>" +
-          "ALUNO: <span>" + (linhas[2] || "") + "</span><br>" +
-          "CPF: <span>" + (linhas[3] || "") + "</span><br>" +
-          "CURSO: <span>" + (linhas[4] || "") + "</span><br>" +
-          "DOCUMENTO: <span>" + (linhas[5] || "") + "</span>";
-      }).catch(() => {});
-    });
-  </script>
+    // Previne touchmove (necessário usar passive:false para permitir preventDefault)
+    (function () {
+      function preventDefault(e) { e.preventDefault(); }
 
+      // Bloqueia touchmove (impede pinça/arraste em muitos browsers mobile)
+      window.addEventListener('touchmove', preventDefault, { passive: false });
+
+      // Bloqueia o evento de gesto em iOS Safari
+      window.addEventListener('gesturestart', function(e){ e.preventDefault(); });
+
+      // Bloqueia zoom por roda do mouse com Ctrl (desktop)
+      window.addEventListener('wheel', function(e){
+        if (e.ctrlKey) e.preventDefault();
+      }, { passive: false });
+
+      // Bloqueia atalhos de teclado que normalmente alteram zoom (Ctrl+, Ctrl-, Ctrl+0 / Ctrl+Plus/Minus)
+      window.addEventListener('keydown', function(e){
+        if (e.ctrlKey || e.metaKey) {
+          var forbidden = ['+', '-', '=', '0', '_'];
+          if (forbidden.indexOf(e.key) !== -1) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+          }
+        }
+      }, { passive: false });
+
+      // Em caso de tentativa de zoom por toque múltiplo (2+ touches), previne
+      window.addEventListener('touchstart', function(e){
+        if (e.touches && e.touches.length > 1) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+
+      // Segurança adicional: tenta restaurar viewport caso algum navegador o altere dinamicamente
+      (function ensureViewport(){
+        var meta = document.querySelector('meta[name="viewport"]');
+        if (meta) {
+          meta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no');
+        }
+      })();
+    })();
+  </script>
 </body>
 </html>
