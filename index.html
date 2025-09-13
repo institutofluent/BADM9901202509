@@ -15,6 +15,7 @@
       user-select: none;
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
+      font-family: Arial, sans-serif;
     }
 
     /* comportamento padrão (mobile): sem rolagem */
@@ -28,9 +29,9 @@
     /* em telas grandes (desktop): permite só rolagem vertical */
     @media (min-width: 1025px) {
       body {
-        overflow-y: auto;   /* ativa rolagem vertical */
-        overflow-x: hidden; /* bloqueia horizontal */
-        touch-action: auto; /* libera navegação normal */
+        overflow-y: auto;
+        overflow-x: hidden;
+        touch-action: auto;
       }
     }
 
@@ -43,11 +44,23 @@
       height: 170px;
       background-color: purple;
       z-index: 1000;
+
+      display: flex;              /* centralização */
+      align-items: center;        /* centraliza verticalmente */
+      justify-content: center;    /* centraliza horizontalmente */
+    }
+
+    .faixa-topo img {
+      max-height: 80%;   /* garante que a imagem nunca ultrapasse a faixa */
+      height: auto;
     }
 
     @media (max-width: 600px) {
       .faixa-topo {
         height: 70px;
+      }
+      .faixa-topo img {
+        max-height: 60%; /* imagem proporcionalmente menor em telas pequenas */
       }
     }
 
@@ -65,6 +78,7 @@
       text-decoration: none;
       z-index: 2000;
       transition: background 0.3s ease;
+      font-family: Arial, sans-serif;
     }
 
     .whatsapp-btn span {
@@ -73,6 +87,7 @@
       font-weight: bold;
       margin-right: 12px;
       white-space: nowrap;
+      font-family: Arial, sans-serif;
     }
 
     .whatsapp-btn img {
@@ -100,8 +115,12 @@
   </style>
 </head>
 <body>
-  <div class="faixa-topo"></div>
+  <!-- faixa roxa com logo centralizado -->
+  <div class="faixa-topo">
+    <img src="ftec.png" alt="Logo FTEC">
+  </div>
 
+  <!-- botão WhatsApp -->
   <a href="https://wa.me/5585985256372" target="_blank" class="whatsapp-btn">
     <span>Fale Conosco:</span>
     <img src="whatsapp.png" alt="WhatsApp">
@@ -111,7 +130,6 @@
     (function(){
       function prevent(e){ e.preventDefault(); }
 
-      // Somente bloqueia gestos de zoom em mobile
       if (window.innerWidth <= 1024) {
         window.addEventListener('touchmove', prevent, { passive:false });
         window.addEventListener('touchstart', function(e){ if(e.touches && e.touches.length>1) e.preventDefault(); }, { passive:false });
