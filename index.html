@@ -23,13 +23,6 @@
       touch-action: none;
       -ms-touch-action: none;
       overscroll-behavior: none;
-      padding-bottom: 360px; /* faixa (340px) + margem */
-    }
-
-    @media (max-width: 600px) {
-      body {
-        padding-bottom: 160px; /* faixa (140px) + margem */
-      }
     }
 
     /* só desktop permite rolagem vertical */
@@ -96,10 +89,13 @@
       }
     }
 
-    /* aviso dentro do fluxo normal */
+    /* aviso fixado logo acima da faixa roxa */
     .aviso {
+      position: absolute;
+      bottom: 350px; /* faixa tem 340px, +10px de margem */
+      left: 0;
+      width: 100%;
       text-align: center;
-      margin: 20px 20px 0 20px;
       color: #000;
       font-size: 14px;
       font-weight: 300;
@@ -107,8 +103,8 @@
 
     @media (max-width: 600px) {
       .aviso {
+        bottom: 150px; /* faixa no mobile tem 140px, +10px de margem */
         font-size: 12px;
-        margin: 12px;
       }
     }
 
