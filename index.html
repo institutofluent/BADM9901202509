@@ -23,13 +23,15 @@
       touch-action: none;
       -ms-touch-action: none;
       overscroll-behavior: none;
+      padding-bottom: 360px; /* espaço para a faixa inferior */
     }
 
-    @media (min-width: 1025px) {
+    @media (max-width: 600px) {
       body {
         overflow-y: auto;
         overflow-x: hidden;
         touch-action: auto;
+        padding-bottom: 160px; /* espaço menor para faixa inferior mobile */
       }
     }
 
@@ -92,7 +94,7 @@
     .aviso {
       text-align: center;
       margin: 20px;
-      margin-bottom: 20px; /* agora bem próximo da faixa roxa inferior */
+      margin-bottom: 10px; /* pequena margem antes da faixa roxa */
       color: #000;
       font-size: 14px;
       font-weight: 300;
@@ -100,7 +102,7 @@
 
     @media (max-width: 600px) {
       .aviso {
-        margin-bottom: 12px;
+        margin-bottom: 8px;
         font-size: 12px;
       }
     }
