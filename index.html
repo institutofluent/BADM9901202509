@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
   <title></title>
   <style>
+    :root{
+      --faixa-baixo-height: 340px; /* desktop */
+      --aviso-gap: 12px;
+    }
+
+    @media (max-width: 600px){
+      :root{
+        --faixa-baixo-height: 140px; /* mobile */
+      }
+    }
+
     html, body {
       width: 100vw;
       height: 100vh;
@@ -25,6 +36,7 @@
       overscroll-behavior: none;
     }
 
+    /* só desktop permite rolagem vertical */
     @media (min-width: 1025px) {
       body {
         overflow-y: auto;
@@ -36,7 +48,7 @@
     /* faixa roxa no topo */
     .faixa-topo {
       width: 100%;
-      height: 170px;
+      height: 170px; /* altura original mantida */
       background-color: #7551B4;
       display: flex;
       align-items: center;
@@ -44,19 +56,19 @@
     }
 
     .faixa-topo img {
-      max-height: 170%;
+      max-height: 100%; /* mantém o tamanho proporcional dentro da faixa (não mexer) */
       height: auto;
     }
 
     @media (max-width: 600px) {
       .faixa-topo {
-        height: 70px;
+        height: 70px; /* altura menor no mobile */
       }
     }
 
     /* texto abaixo da faixa */
     .texto-abaixo-topo {
-      margin-top: 20px;
+      margin-top: 20px; /* espaçamento abaixo da faixa */
       text-align: center;
       color: #666;
       font-weight: 300;
@@ -70,14 +82,14 @@
       }
     }
 
-    /* bloco dos rótulos */
+    /* bloco dos rótulos (alinhados à esquerda) */
     .rotulos {
-      margin-top: 30px;
-      margin-left: 20px;
+      margin-top: 30px; /* distância do texto acima */
+      margin-left: 20px; /* pequena margem à esquerda */
       color: #333;
       font-size: 18px;
       line-height: 1.8;
-      font-weight: bold;
+      font-weight: bold; /* NEGRITO aplicado apenas nos rótulos */
     }
 
     @media (max-width: 600px) {
@@ -88,40 +100,43 @@
       }
     }
 
-    /* aviso acima do rodapé */
+    /* aviso fixo, sempre encostado acima da faixa inferior com pequena margem */
     .aviso {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: calc(var(--faixa-baixo-height) + var(--aviso-gap));
+      width: calc(100% - 40px);
+      max-width: 1000px;
       text-align: center;
-      margin: 20px;
-      margin-bottom: 350px; /* encostado na faixa roxa inferior */
       color: #000;
       font-size: 14px;
       font-weight: 300;
+      z-index: 1100; /* acima da faixa-baixo */
+      box-sizing: border-box;
+      padding: 6px 10px;
     }
 
     @media (max-width: 600px) {
       .aviso {
-        margin-bottom: 140px;
+        bottom: calc(var(--faixa-baixo-height) + 10px);
         font-size: 12px;
+        width: calc(100% - 24px);
       }
     }
 
-    /* faixa inferior */
+    /* faixa inferior fixa */
     .faixa-baixo {
       width: 100%;
-      height: 340px;
+      height: var(--faixa-baixo-height);
       background-color: #7551B4;
       position: fixed;
       bottom: 0;
       left: 0;
+      z-index: 1000;
     }
 
-    @media (max-width: 600px) {
-      .faixa-baixo {
-        height: 140px;
-      }
-    }
-
-    /* botão WhatsApp */
+    /* botão WhatsApp (sobreposto) */
     .whatsapp-btn {
       position: fixed;
       bottom: 20px;
@@ -133,7 +148,7 @@
       border-radius: 50px;
       padding: 15px 20px;
       text-decoration: none;
-      z-index: 2001;
+      z-index: 2002; /* acima do aviso/faixa */
       transition: background 0.3s ease;
       font-family: Arial, sans-serif;
     }
@@ -193,12 +208,12 @@
     CURSO: <span id="curso"></span>
   </div>
 
-  <!-- aviso acima da faixa inferior -->
+  <!-- aviso fixo acima da faixa inferior -->
   <div class="aviso">
     Caso acredite que as informações emitidas não coincidem, entre em contato conosco pelo Whatsapp
   </div>
 
-  <!-- faixa roxa inferior -->
+  <!-- faixa roxa inferior fixa -->
   <div class="faixa-baixo"></div>
 
   <!-- botão WhatsApp -->
