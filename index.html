@@ -3,9 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-  <title>Página sem rolagem e sem zoom</title>
+  <title></title>
   <style>
-    /* Garante que não haja rolagem e que a página ocupe toda a tela */
     html, body {
       width: 100vw;
       height: 100vh;
@@ -18,84 +17,33 @@
       overscroll-behavior: none;
       -webkit-user-select: none;
       user-select: none;
-      background: #f2f2f2;
-      font-family: Arial, sans-serif;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      background: #fff;
     }
-
-    /* Conteúdo central apenas como exemplo */
-    .container {
-      box-sizing: border-box;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .card {
-      width: 90%;
-      max-width: 900px;
-      padding: 24px;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-      text-align: center;
-    }
-
-    /* Evita redimensionamento de texto automático no iOS */
-    html { -webkit-text-size-adjust: 100%; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="card">
-      <h1>Sem rolagem · Sem zoom</h1>
-      <p>Esta página bloqueia rolagem e zoom em navegadores modernos (mobile e desktop).</p>
-    </div>
-  </div>
-
-  <script>
-    // Previne touchmove (necessário usar passive:false para permitir preventDefault)
-    (function () {
-      function preventDefault(e) { e.preventDefault(); }
-
-      // Bloqueia touchmove (impede pinça/arraste em muitos browsers mobile)
-      window.addEventListener('touchmove', preventDefault, { passive: false });
-
-      // Bloqueia o evento de gesto em iOS Safari
-      window.addEventListener('gesturestart', function(e){ e.preventDefault(); });
-
-      // Bloqueia zoom por roda do mouse com Ctrl (desktop)
-      window.addEventListener('wheel', function(e){
-        if (e.ctrlKey) e.preventDefault();
-      }, { passive: false });
-
-      // Bloqueia atalhos de teclado que normalmente alteram zoom (Ctrl+, Ctrl-, Ctrl+0 / Ctrl+Plus/Minus)
-      window.addEventListener('keydown', function(e){
-        if (e.ctrlKey || e.metaKey) {
-          var forbidden = ['+', '-', '=', '0', '_'];
-          if (forbidden.indexOf(e.key) !== -1) {
-            e.preventDefault();
-            e.stopImmediatePropagation();
-          }
-        }
-      }, { passive: false });
-
-      // Em caso de tentativa de zoom por toque múltiplo (2+ touches), previne
-      window.addEventListener('touchstart', function(e){
-        if (e.touches && e.touches.length > 1) {
-          e.preventDefault();
-        }
-      }, { passive: false });
-
-      // Segurança adicional: tenta restaurar viewport caso algum navegador o altere dinamicamente
-      (function ensureViewport(){
-        var meta = document.querySelector('meta[name="viewport"]');
-        if (meta) {
-          meta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no');
-        }
-      })();
-    })();
-  </script>
+<script>
+  (function(){
+    function prevent(e){ e.preventDefault(); }
+    // touch/pinch
+    window.addEventListener('touchmove', prevent, { passive:false });
+    window.addEventListener('touchstart', function(e){ if(e.touches && e.touches.length>1) e.preventDefault(); }, { passive:false });
+    // iOS gesture
+    window.addEventListener('gesturestart', prevent);
+    // mouse wheel + ctrl (desktop zoom)
+    window.addEventListener('wheel', function(e){ if(e.ctrlKey) e.preventDefault(); }, { passive:false });
+    // keyboard zoom shortcuts (Ctrl/Cmd + +/-/0)
+    window.addEventListener('keydown', function(e){
+      if(e.ctrlKey || e.metaKey){
+        var k = e.key;
+        if(k === '+' || k === '-' || k === '=' || k === '0' || k === '_' ) { e.preventDefault(); e.stopImmediatePropagation(); }
+      }
+    }, { passive:false });
+    // ensure viewport stays locked
+    (function(){ var m = document.querySelector('meta[name="viewport"]'); if(m) m.setAttribute('content','width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no'); })();
+  })();
+</script>
 </body>
 </html>
