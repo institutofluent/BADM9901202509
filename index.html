@@ -18,7 +18,6 @@
       font-family: Arial, sans-serif;
     }
 
-    /* comportamento padrão (mobile): sem rolagem */
     body {
       overflow: hidden;
       touch-action: none;
@@ -26,7 +25,6 @@
       overscroll-behavior: none;
     }
 
-    /* em telas grandes (desktop): permite só rolagem vertical */
     @media (min-width: 1025px) {
       body {
         overflow-y: auto;
@@ -37,21 +35,16 @@
 
     /* faixa roxa no topo */
     .faixa-topo {
-      position: fixed;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 170px;
       background-color: #7551B4;
-      z-index: 1000;
-
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     .faixa-topo img {
-      max-height: 170%;
+      max-height: 100%;
       height: auto;
     }
 
@@ -59,25 +52,37 @@
       .faixa-topo {
         height: 70px;
       }
-      .faixa-topo img {
-        max-height: 160%;
-      }
     }
 
     /* texto abaixo da faixa */
-    .texto-mec {
-      margin-top: 190px; /* espaço para não encostar na faixa roxa */
+    .texto-abaixo-topo {
+      margin-top: 20px;
       text-align: center;
-      font-size: 18px;
-      font-weight: 300; /* fino */
-      color: gray;
-      font-family: Arial, sans-serif;
+      color: #666;
+      font-weight: 300;
+      font-size: 22px;
     }
 
     @media (max-width: 600px) {
-      .texto-mec {
-        margin-top: 90px; /* ajustado para faixa menor */
-        font-size: 14px;
+      .texto-abaixo-topo {
+        margin-top: 12px;
+        font-size: 16px;
+      }
+    }
+
+    /* faixa inferior */
+    .faixa-baixo {
+      width: 100%;
+      height: 340px;
+      background-color: #7551B4;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+    }
+
+    @media (max-width: 600px) {
+      .faixa-baixo {
+        height: 140px;
       }
     }
 
@@ -93,7 +98,7 @@
       border-radius: 50px;
       padding: 15px 20px;
       text-decoration: none;
-      z-index: 2000;
+      z-index: 2001;
       transition: background 0.3s ease;
       font-family: Arial, sans-serif;
     }
@@ -104,7 +109,6 @@
       font-weight: bold;
       margin-right: 12px;
       white-space: nowrap;
-      font-family: Arial, sans-serif;
     }
 
     .whatsapp-btn img {
@@ -138,36 +142,15 @@
   </div>
 
   <!-- texto abaixo da faixa -->
-  <div class="texto-mec">Código MEC Nº 21811</div>
+  <div class="texto-abaixo-topo">Código MEC Nº 21811</div>
+
+  <!-- faixa roxa inferior -->
+  <div class="faixa-baixo"></div>
 
   <!-- botão WhatsApp -->
   <a href="https://wa.me/5585985256372" target="_blank" class="whatsapp-btn">
     <span>Fale Conosco:</span>
     <img src="whatsapp.png" alt="WhatsApp">
   </a>
-
-  <script>
-    (function(){
-      function prevent(e){ e.preventDefault(); }
-
-      if (window.innerWidth <= 1024) {
-        window.addEventListener('touchmove', prevent, { passive:false });
-        window.addEventListener('touchstart', function(e){ if(e.touches && e.touches.length>1) e.preventDefault(); }, { passive:false });
-        window.addEventListener('gesturestart', prevent);
-        window.addEventListener('wheel', function(e){ if(e.ctrlKey) e.preventDefault(); }, { passive:false });
-        window.addEventListener('keydown', function(e){
-          if(e.ctrlKey || e.metaKey){
-            var k = e.key;
-            if(k === '+' || k === '-' || k === '=' || k === '0' || k === '_' ) { e.preventDefault(); e.stopImmediatePropagation(); }
-          }
-        }, { passive:false });
-      }
-
-      (function(){
-        var m = document.querySelector('meta[name="viewport"]');
-        if(m) m.setAttribute('content','width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no');
-      })();
-    })();
-  </script>
 </body>
 </html>
