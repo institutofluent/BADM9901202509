@@ -36,7 +36,7 @@
     /* faixa roxa no topo */
     .faixa-topo {
       width: 100%;
-      height: 170px; /* altura original mantida */
+      height: 170px;
       background-color: #7551B4;
       display: flex;
       align-items: center;
@@ -44,19 +44,19 @@
     }
 
     .faixa-topo img {
-      max-height: 170%; /* mantém o tamanho proporcional dentro da faixa */
+      max-height: 170%;
       height: auto;
     }
 
     @media (max-width: 600px) {
       .faixa-topo {
-        height: 70px; /* altura menor no mobile */
+        height: 70px;
       }
     }
 
     /* texto abaixo da faixa */
     .texto-abaixo-topo {
-      margin-top: 20px; /* espaçamento abaixo da faixa */
+      margin-top: 20px;
       text-align: center;
       color: #666;
       font-weight: 300;
@@ -72,12 +72,12 @@
 
     /* bloco dos rótulos */
     .rotulos {
-      margin-top: 30px; /* distância do texto acima */
-      margin-left: 20px; /* pequena margem à esquerda */
+      margin-top: 30px;
+      margin-left: 20px;
       color: #333;
       font-size: 18px;
       line-height: 1.8;
-      font-weight: bold; /* NEGRITO aplicado apenas nos rótulos */
+      font-weight: bold;
     }
 
     @media (max-width: 600px) {
@@ -88,10 +88,27 @@
       }
     }
 
+    /* aviso acima do rodapé */
+    .aviso {
+      text-align: center;
+      margin: 20px;
+      margin-bottom: 360px;
+      color: #000; /* preto */
+      font-size: 14px;
+      font-weight: 300;
+    }
+
+    @media (max-width: 600px) {
+      .aviso {
+        margin-bottom: 160px;
+        font-size: 12px;
+      }
+    }
+
     /* faixa inferior */
     .faixa-baixo {
       width: 100%;
-      height: 340px; /* altura original mantida */
+      height: 340px;
       background-color: #7551B4;
       position: fixed;
       bottom: 0;
@@ -100,7 +117,7 @@
 
     @media (max-width: 600px) {
       .faixa-baixo {
-        height: 140px; /* altura menor no mobile */
+        height: 140px;
       }
     }
 
@@ -174,6 +191,11 @@
     DATA DE NASCIMENTO: <span id="nascimento"></span><br>
     FILIAÇÃO: <span id="filiacao"></span><br>
     CURSO: <span id="curso"></span>
+  </div>
+
+  <!-- aviso acima da faixa inferior -->
+  <div class="aviso">
+    Caso acredite que as informações emitidas não coincidem, entre em contato conosco pelo Whatsapp
   </div>
 
   <!-- faixa roxa inferior -->
