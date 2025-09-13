@@ -25,12 +25,15 @@
     }
 
     .rodape {
-      background-color: #000000;
       width: 100%;
-      height: 280px; /* 140px * 2 */
+      height: 420px; /* 140px * 3 */
       position: absolute;
       bottom: 0;
       left: 0;
+      background-color: #000000;
+      background-size: cover;       /* faz a imagem cobrir toda a área */
+      background-position: center;  /* centraliza a imagem */
+      background-repeat: no-repeat; /* evita repetição */
     }
 
     .whatsapp-btn {
@@ -80,7 +83,8 @@
     <img src="whatsapp.png" alt="WhatsApp">
   </a>
 
-  <div class="rodape"></div>
+  <!-- Para ativar a imagem, troque 'rodape.png' pelo nome do seu arquivo -->
+  <div class="rodape" style="background-image: url('rodape.png');"></div>
 
 </body>
 </html>
